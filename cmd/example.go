@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-	fmt.Print("Hello")
 	cuda.Init(0)
 	fmt.Printf("There is %d GPU\n", cuda.DeviceGetCount())
 }

@@ -17,3 +17,15 @@ func DeviceGetCount() int {
 	}
 	return int(count)
 }
+
+// Gets the name of the device.
+func DeviceGetName(dev Device) string {
+	size := 256
+	buf := make([]byte, size)
+	cstr := C.CString(string(buf))
+	err := Result(C.cuDeviceGetName(cstr, C.int(size), C.CUdevice(dev)))
+	if err != SUCCESS {
+		panic(err)
+	}
+	return C.GoString(cstr)
+}
